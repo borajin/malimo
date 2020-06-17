@@ -15,15 +15,15 @@
       <input type="number" value="0" name="answer_time" min="0" max="90"> <span>초</span>
 
       <h3>예상질문</h3>
-      <ul class="js-toDoList" name="expected_questions"></ul>
-      <input class="js-todoInput" type="text" placeholder="Write a to do" />
+      <ul class="js-toDoList"></ul>
+      <input class="js-todoInput" type="text" name="expected_questions" placeholder="Write a to do" />
 
       <h3>랜덤질문</h3>
       <input type="radio" name="random_question" value="on"> <span>on</span>
       <input type="radio" name="random_question" value="off"><span>off</span>
 
       <div>
-        <input type="submit" value="모의면접 시작하기">
+        <input class="submitBtn" type="submit" value="모의면접 시작하기">
       </div>
     </form>
     <script src="js/settings.js"></script>
