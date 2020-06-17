@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>MALIMO - interview</title>
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    생각시간: <span id="think_time"><%= think_time %></span>초
+    <div>답변시간 :<span id="answer_time"><%= answer_time %></span>초</div>
+    <div>질문 : <span id="question"><%= expected_questions %></span></div>
+
+    <button id="pass_btn">PASS</button>
+    <video autoplay style="max-height: 968px;"></video>
+
+    <script src="js/RecordRTC.js"></script>
+    <script src="js/interview.js"></script>
+  </body>
+</html>
