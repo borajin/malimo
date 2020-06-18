@@ -23,8 +23,14 @@ const think_time_html = document.querySelector('#think_time');
 const answer_time_html = document.querySelector('#answer_time');
 const pass_btn = document.querySelector('#pass_btn');
 
-const think_time_num = Number(think_time_html.innerText);
-const answer_time_num = Number(answer_time_html.innerText);
+//const think_time_num = Number(think_time_html.innerText);
+//const answer_time_num = Number(answer_time_html.innerText);
+
+const think_time_num = think_time;
+const answer_time_num = answer_time;
+const questions = expected_questions;
+
+console.log(questions);
 
 let interval;
 
