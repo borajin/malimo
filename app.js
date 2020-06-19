@@ -1,9 +1,14 @@
 //npm i express --save
-var express = require('express');  
-var app = express();
+const express = require('express');  
+
+const indexRouter = require('./routes/index');
+const settingsRouter = require('./routes/settings');
+const interviewRouter = require('./routes/interview');
+
+const app = express();
 
 //npm i body-parser --save
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //npm i ejs --save
@@ -11,38 +16,14 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
+//정적파일 경로 지정
 app.use(express.static('./public'));
 
-//루트페이지 (직접 주소 치고 들어가는거니 get방식)
-app.get('/', function(req, res, next) {
-    res.render('index');
-});
-
-//result page 라우팅
-app.get('/settings', function(req, res, next) {
-    res.render('settings');
-});
-
-var think_time;
-var answer_time;
-var expected_questions;
-var random_question;
-
-app.post('/interview', function(req, res, next) {
-    think_time = req.body.think_time;
-    answer_time = req.body.answer_time;
-    expected_questions = req.body.expected_questions;
-
-    res.render('interview', {think_time : think_time, answer_time : answer_time, expected_questions : expected_questions});
-});
-
-app.get('/results', function(req, res, next) {
-    var videos = req.query.videos;
-
-    res.render('results', {videos: videos});
-});
+app.use('/', indexRouter);
+app.get('/settings', settingsRouter);
+app.post('/interview', interviewRouter);
 
 //서버 생성
-var server = app.listen(8080, function(){
+const server = app.listen(8080, function(){
     console.log("Express server has started on port 8080")
 })

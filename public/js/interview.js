@@ -108,7 +108,13 @@ function stopRecordingCallback() {
 function sendVideos() {
     console.log(videos);
     var formdata = new FormData();
-    formdata.append("videos", vidoes);
+    formdata.append("videos", videos);
+
+    var request = new XMLHttpRequest();
+    request.onload = completeRequest;
+
+    request.open("POST", "/load");
+    request.send(formdata);
 }
 
 //타이머
