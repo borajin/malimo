@@ -32,9 +32,8 @@ app.post('/interview', function(req, res, next) {
     think_time = req.body.think_time;
     answer_time = req.body.answer_time;
     expected_questions = req.body.expected_questions;
-    random_question = req.body.random_question;
-    
-    res.render('interview', {think_time : think_time, answer_time : answer_time, expected_questions : expected_questions, random_question : random_question});
+
+    res.render('interview', {think_time : think_time, answer_time : answer_time, expected_questions : expected_questions});
 });
 
 app.get('/results', function(req, res, next) {

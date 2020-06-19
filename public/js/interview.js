@@ -16,38 +16,36 @@ let camera;
 let recorder;
 
 let status = Number(-1);
-let count = 0;
 
 const video = document.querySelector('video');
 const think_time_html = document.querySelector('#think_time');
 const answer_time_html = document.querySelector('#answer_time');
+const expected_questions_html = document.querySelector('#expected_questions');
 const pass_btn = document.querySelector('#pass_btn');
 
-//const think_time_num = Number(think_time_html.innerText);
-//const answer_time_num = Number(answer_time_html.innerText);
+const think_time_num = Number(think_time_html.innerText);
+const answer_time_num = Number(answer_time_html.innerText);
+const expected_questions = expected_questions_html.innerText.split('@');
 
-const think_time_num = think_time;
-const answer_time_num = answer_time;
-const questions = expected_questions;
-
-console.log(questions);
+let count = 0;
+let max_count = expected_questions.length;
 
 let interval;
 
 let videos = [];
 
 //pass btn 클릭 이벤트
-function clickEvent() {
+function passEvent() {
     changeStatus();
 
-    if(count < 2) {
+    if(count < max_count) {
         startInterview();
     } else {
         endInterview();
     }
 }
 
-pass_btn.addEventListener("click", clickEvent);
+pass_btn.addEventListener("click", passEvent);
 
 if(think_time_num == 0 && answer_time_num == 0) {
 
@@ -131,7 +129,7 @@ function timer(time_num, time_html) {
 
 function think_time() {
     print(count+"번째 생각 시작");
-     timer(think_time_num, think_time_html);
+    timer(think_time_num, think_time_html);
 }
 
 async function answer_time() {
@@ -151,12 +149,12 @@ function nextQuestion() {
 
 async function endAnswer() {
     await recorder.stopRecording(stopRecordingCallback);
-    
     nextQuestion();
 }
 
 function startInterview() {
     if(status==0) {
+        expected_questions_html.innerText = expected_questions[count];
         think_time();
      } else if(status==1) {
          answer_time();
