@@ -56,26 +56,17 @@ if(think_time_num == 0 && answer_time_num == 0) {
 
 /* --------------------------------------------------------------------------------------------------------- */
 
-
-//그냥 테스트용 console.log
-function print(message) {
-    console.log(message);
-}
-
 //카메라 만들기
 async function captureCamera() {
     try {
         camera = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
     } catch(err) {
-        print(error);
         alert('Unable to capture your camera. Please check console logs.');
     }
 }
 
 //카메라 레코더로 등록하고 레코드 시작
 function startRecordingCallback(camera) {
-    print("hello");
-    
     video.muted = true;
     video.volume = 0;
     video.srcObject = camera;
@@ -97,7 +88,7 @@ function stopRecordingCallback() {
     video.volume = 1;
     video.src = URL.createObjectURL(recorder.getBlob());
 
-    videos.push(recorder.getBlob());
+    sendVideos(recorder.getBlob());
 
     recorder.camera.stop();
     recorder.destroy();
@@ -105,16 +96,15 @@ function stopRecordingCallback() {
 }
 
 //레코드한 영상들 전송
-function sendVideos() {
-    console.log(videos);
-    var formdata = new FormData();
-    formdata.append("videos", videos);
+function sendVideos(data) {
+    const fd = new FormData();
+ 
+    fd.append('upl', data, 'test.webm');
 
-    var request = new XMLHttpRequest();
-    request.onload = completeRequest;
-
-    request.open("POST", "/load");
-    request.send(formdata);
+    fetch('/upload', {
+        method:'post',
+        body: fd
+    });
 }
 
 //타이머
@@ -127,19 +117,16 @@ function timer(time_num, time_html) {
             pass_btn.click();
         } else {
             time_html.innerText = time_num;
-        print(time_num)
         }
         time_num = time_num - 1;
     }, 1000);
 }
 
 function think_time() {
-    print(count+"번째 생각 시작");
     timer(think_time_num, think_time_html);
 }
 
 async function answer_time() {
-    print(count+"번째 질문 시작");
     await captureCamera();
     await startRecordingCallback(camera);
     await timer(answer_time_num, answer_time_html);
@@ -169,8 +156,7 @@ function startInterview() {
      }
 }
 
-async function endInterview() {
-    print("끝");
+async function endInterview() {;
     await recorder.stopRecording(stopRecordingCallback);
     await sendVideos();
 }
