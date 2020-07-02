@@ -5,7 +5,6 @@ const cors = require('cors');
 const indexRouter = require('./routes/index');
 const settingsRouter = require('./routes/settings');
 const interviewRouter = require('./routes/interview');
-const uploadRouter = require('./routes/upload');
 
 const app = express();
 
@@ -26,7 +25,6 @@ app.use(cors());
 app.use('/', indexRouter);
 app.get('/settings', settingsRouter);
 app.post('/interview', interviewRouter);
-app.post('/upload', uploadRouter);
 
 //서버 생성
 const server = app.listen(8080, function(){

@@ -12,8 +12,7 @@
     count 만큼 0->1->2 싸이클 반복함. 
 */
 
-let camera;
-let recorder;
+let camera, recorder;
 
 let status = Number(-1);
 
@@ -31,30 +30,6 @@ let count = 0;
 let max_count = expected_questions.length;
 
 let interval;
-
-let videos = [];
-
-//pass btn 클릭 이벤트
-function passEvent() {
-    changeStatus();
-
-    if(count < max_count) {
-        startInterview();
-    } else {
-        endInterview();
-    }
-}
-
-pass_btn.addEventListener("click", passEvent);
-
-if(think_time_num == 0 && answer_time_num == 0) {
-
-} else {
-    pass_btn.click();
-}
-
-
-/* --------------------------------------------------------------------------------------------------------- */
 
 //카메라 만들기
 async function captureCamera() {
@@ -88,23 +63,9 @@ function stopRecordingCallback() {
     video.volume = 1;
     video.src = URL.createObjectURL(recorder.getBlob());
 
-    sendVideos(recorder.getBlob());
-
     recorder.camera.stop();
     recorder.destroy();
     recorder = null;
-}
-
-//레코드한 영상들 전송
-function sendVideos(data) {
-    const fd = new FormData();
- 
-    fd.append('upl', data, 'test.webm');
-
-    fetch('/upload', {
-        method:'post',
-        body: fd
-    });
 }
 
 //타이머
@@ -123,7 +84,9 @@ function timer(time_num, time_html) {
 }
 
 function think_time() {
+    expected_questions_html.innerText = expected_questions[count];
     timer(think_time_num, think_time_html);
+    speak(expected_questions[count]);
 }
 
 async function answer_time() {
@@ -132,22 +95,17 @@ async function answer_time() {
     await timer(answer_time_num, answer_time_html);
 }
 
-//다음 질문으로 넘어가기
-function nextQuestion() {
+async function endAnswer() {
+    await recorder.stopRecording(stopRecordingCallback);
+    
     status = Number(-1);
     count = count + 1;
 
     pass_btn.click();
 }
 
-async function endAnswer() {
-    await recorder.stopRecording(stopRecordingCallback);
-    nextQuestion();
-}
-
 function startInterview() {
     if(status==0) {
-        expected_questions_html.innerText = expected_questions[count];
         think_time();
      } else if(status==1) {
          answer_time();
@@ -156,12 +114,35 @@ function startInterview() {
      }
 }
 
-async function endInterview() {;
-    await recorder.stopRecording(stopRecordingCallback);
-    await sendVideos();
-}
-
 function changeStatus() {
     status = Number(status) + Number(1);
     clearInterval(interval);
 }
+
+function speak(text) {
+    if (typeof SpeechSynthesisUtterance === 'undefined' || typeof speechSynthesis === 'undefined') {
+        alert('This browser does not support speech API');
+        return;
+    }
+
+    const message = new SpeechSynthesisUtterance(text);
+    const voices = speechSynthesis.getVoices();
+
+    message.voice = voices[0];
+    speechSynthesis.speak(message);
+}
+
+//pass btn 클릭 이벤트
+function passEvent() {
+    changeStatus();
+
+    if(count < max_count) {
+        startInterview();
+    } else {
+       
+    }
+}
+
+pass_btn.addEventListener("click", passEvent);
+
+pass_btn.click();
