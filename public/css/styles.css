@@ -2,7 +2,7 @@
 @import "settings.css";
 @import "interview.css";
 @import "results.css";
-@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Jua&display=swap');
 
 
 body {
@@ -10,6 +10,6 @@ body {
   height: 800px;
   width: 100%;
   display: table;
-  font-family: 'Sunflower', sans-serif; 
+  font-family: 'Jua', sans-serif; 
   color: #2f5597;;
 }

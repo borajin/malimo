@@ -24,12 +24,12 @@
   display: inline-block;
   overflow: visible;
   height: 2.1em;
-  background: #fff;
+  background: rgb(255, 255, 255);
   padding: 1px;
 }
 
 .stepper input {
-    font-family: 'Sunflower', sans-serif;
+    font-family: 'Jua', sans-serif;
     font-size: 20px; 
     width: 3em;
     height: 100%;
@@ -40,7 +40,7 @@
 }
 
 .stepper button {
-    font-family: 'Sunflower', sans-serif; 
+    font-family: 'Jua', sans-serif; 
     width: 1.4em;
     font-weight: 300;
     height: 100%;
@@ -53,16 +53,17 @@
 }
 
 .settings_submit {
-    font-family: 'Sunflower', sans-serif;
+    font-family: 'Jua', sans-serif;
 	width:180px;
-    background-color:  #2f5597;
-    color: white;
+  background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
     border: none;
     padding: 15px 0;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 15px;
+    font-size: 20px;
     margin: 4px;
     cursor: pointer;
     border-radius:10px;
@@ -79,6 +80,9 @@
     line-height: 44px;
     margin-right: 20px;
     margin-left: 20px;
+    background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 }
 
 .questions_input {
@@ -91,7 +95,7 @@
     border-right: none;
     width: 400px;
     margin-top: 10px;
-    font-family: 'Sunflower', sans-serif; 
+    font-family: 'Jua', sans-serif; 
     font-size: 16px;
   }
   
@@ -109,6 +113,19 @@
       font-size: 20px;
   }
 
+  .head{
+   
+    text-decoration: underline;
+    margin: 30px;
+    font-size: 50px;
+    background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+
+
+  }
+
   .setting_form,
   .setting_answer,
   .settings_submit {
@@ -122,3 +139,6 @@
   .settings_questions li {
       margin-top: 10px;
   }
+
+
+  

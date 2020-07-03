@@ -61,9 +61,11 @@ function stopRecordingCallback() {
     video.src = video.srcObject = null;
     video.muted = false;
     video.volume = 1;
-    video.src = URL.createObjectURL(recorder.getBlob());
+    getSeekableBlob(recorder.getBlob(), function(seekableBlob) {
+        video.src = URL.createObjectURL(seekableBlob);
 
-    sendToServer(recorder.getBlob())
+        sendToServer(seekableBlob);
+    });
 
     recorder.camera.stop();
     recorder.destroy();
