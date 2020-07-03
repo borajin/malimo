@@ -1,0 +1,15 @@
+@import "index.css";
+@import "settings.css";
+@import "interview.css";
+@import "results.css";
+@import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Jua&display=swap');
+
+
+body {
+  padding: 50px 20px 80px 20px;
+  height: 800px;
+  width: 100%;
+  display: table;
+  font-family: 'Jua', sans-serif; 
+  color: #2f5597;;
+}

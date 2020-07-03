@@ -1,0 +1,25 @@
+.img_box {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.img_box > img {
+  height: 500px;
+  margin: 0 auto;
+}
+
+a:link, a:visited{
+  background-color: #000081;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius:10px;
+  margin: 20px;
+}
+a:hover, a:active{
+  background-color: #7ED2FF;
+  text-align: center;
+}

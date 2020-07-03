@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>MALIMO - interview</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="interview">
+      <div class="box">
+          <div class = "options">
+            <div class="time">
+              <div class = "think_time"> 
+              <div class="interview_title">생각시간</div> 
+              <div class="interview_time" id="think_time"><%= think_time %></div> 
+              <div class="interview_text">초</div>
+            </div>
+            <div class="answer_time"> 
+              <div class="interview_title">답변시간</div>
+              <div class="interview_time" id="answer_time"><%= answer_time %></div> 
+              <div class="interview_text">초</div>
+            </div>
+            <button id="pass_btn">PASS</button>
+            </div>
+
+            <div class="questions"> 
+              <div class="interview_title">질문</div> 
+              <div class="interview_text" id="expected_questions"><%= expected_questions %></div>
+            </div>
+        </div>
+
+        <div class="interview_video">
+          <video autoplay style="max-height: 900px;"></video>
+        </div>
+      </div>
+    </div>
+    
+    <script src="https://www.webrtc-experiment.com/EBML.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    <script src="js/interview.js"></script>
+  </body>
+</html>

@@ -14,5 +14,6 @@ def hello_user(userName):
 @app.route('/recognition', methods = ['POST'])
 def recognition():
     f = request.files['file']
+    f.save('./files/interview.webm')
     r = expression_recognition.RECOG()
     return jsonify(r.recog(f))

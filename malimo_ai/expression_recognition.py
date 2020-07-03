@@ -15,7 +15,7 @@ class ExpressionRecog():
         detection_model_path = 'haarcascades/haarcascade_frontalface_default.xml'
         emotion_model_path = 'models/_mini_XCEPTION.06-0.54.hdf5'
 
-        FRAME_PATH = './file/images/frame'
+        FRAME_PATH = './files/images/frame'
 
         file_data = OrderedDict()
 
@@ -28,21 +28,21 @@ class ExpressionRecog():
         EMOTIONS = ["angry","disgust","scared","happy","sad","surprised","neutral"]
         RESULTS = {EMOTIONS[0]: 0, EMOTIONS[1]: 0, EMOTIONS[2]: 0, EMOTIONS[3]: 0, EMOTIONS[4]: 0, EMOTIONS[5]: 0, EMOTIONS[6]: 0}
 
-        video = cv2.VideoCapture('./file/interview1.webm')
+        video = cv2.VideoCapture('./files/interview.webm')
 
         while(video.isOpened()):
             ret, image = video.read()
 
             if(ret == False):
                 break
-        
-            if(int(video.get(1)) % 20 == 0):
-                cv2.imwrite("./file/images/frame%d.jpg" % max_count, image)
+
+            if(int(video.get(1)) % 30 == 0):
+                cv2.imwrite("./files/images/frame%d.jpg" % max_count, image)
                 print(max_count)
                 max_count += 1
 
         while(count < max_count):
-            frame = cv2.imread('./file/images/frame%d.jpg' % count, cv2.IMREAD_COLOR)
+            frame = cv2.imread('./files/images/frame%d.jpg' % count, cv2.IMREAD_COLOR)
 
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = face_detection.detectMultiScale(gray,scaleFactor=1.1,minNeighbors=5,minSize=(30,30),flags=cv2.CASCADE_SCALE_IMAGE)
@@ -70,11 +70,4 @@ class ExpressionRecog():
         for k, v in RESULTS.items():
             file_data[k] = v/count
 
-        count = 0
-        max_count = 0
-
-        return RESULTS
-
-if __name__ == '__main__':
-    malimo_ai = ExpressionRecog()
-    print(malimo_ai.recog())
+        return file_data
