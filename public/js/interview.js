@@ -63,9 +63,17 @@ function stopRecordingCallback() {
     video.volume = 1;
     video.src = URL.createObjectURL(recorder.getBlob());
 
-    let filename = 'test.webm';
+    sendToServer(recorder.getBlob())
 
-    var file = new File([recorder.getBlob()], filename, {
+    recorder.camera.stop();
+    recorder.destroy();
+    recorder = null;
+}
+
+function sendToServer(blob) {
+    let filename = 'interview' + count +'.webm';
+
+    let file = new File([blob], filename, {
         type: 'video/webm'
     });
 
@@ -87,10 +95,6 @@ function stopRecordingCallback() {
             console.log("error: ", e);
         }
     });
-
-    recorder.camera.stop();
-    recorder.destroy();
-    recorder = null;
 }
 
 //타이머
