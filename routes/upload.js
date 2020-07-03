@@ -1,10 +1,23 @@
 const express = require('express');
 const uploadRouter = express.Router();
 const multer = require('multer');
-const upload = multer({dest: 'uploads/'});
 
-uploadRouter.post('/upload', upload.single('data'), function(req, res, next) {
-    res.send('Uploaded: ' + req.file);
+// multer setting
+const upload = multer({
+    storage: multer.diskStorage({
+      // set a localstorage destination
+      destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+      },
+      // convert a file name
+      filename: (req, file, cb) => {
+        var filename = file.originalname;
+        cb(null, filename);
+      },
+    }),
+  });
+
+uploadRouter.post('/upload', upload.single('file'), function(req, res, next) {
     console.log(req.file);
 });
 

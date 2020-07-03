@@ -63,19 +63,21 @@ function stopRecordingCallback() {
     video.volume = 1;
     video.src = URL.createObjectURL(recorder.getBlob());
 
-    var file = new File([recorder.getBlob()], 'test.webm', {
+    let filename = 'test.webm';
+
+    var file = new File([recorder.getBlob()], filename, {
         type: 'video/webm'
     });
 
     var formData = new FormData();
     formData.append('file', file);
-    $ajax({
+    $.ajax({
         type: "POST",
         enctype:'multipart/form-data',
         url: 'upload',
         data: formData,
-        processData: false,
-        contentType: false,
+        contentType : false,
+        processData : false,
         cache: false,
         timeout: 6000000,
         success: function(data) {
