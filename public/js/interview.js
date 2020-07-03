@@ -63,6 +63,19 @@ function stopRecordingCallback() {
     video.volume = 1;
     video.src = URL.createObjectURL(recorder.getBlob());
 
+    var file = new File([recorder.getBlob()], 'test.webm', {
+        type: 'video/webm'
+    });
+
+    var formData = new FormData();
+    formData.append('file', file);
+    uploadToServer(formData);
+
+    /*
+    const socket = io();
+    socket.emit('upload', {data: file});
+    */
+
     recorder.camera.stop();
     recorder.destroy();
     recorder = null;
