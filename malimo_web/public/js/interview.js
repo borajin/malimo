@@ -62,8 +62,8 @@ function stopRecordingCallback() {
     video.muted = false;
     video.volume = 1;
     getSeekableBlob(recorder.getBlob(), function(seekableBlob) {
-        video.src = URL.createObjectURL(seekableBlob);
-
+        //video.src = URL.createObjectURL(seekableBlob);
+        video.src = null;
         sendToServer(seekableBlob);
     });
 
@@ -170,10 +170,30 @@ function passEvent() {
     if(count < max_count) {
         startInterview();
     } else {
-       
+        $('.box').css("display", "none");
+        const text = document.createElement('div');
+        text.innerText = "면접이 끝났습니다. AI가 결과를 분석중입니다 . . .";
+        $('.interview').append(text);
+
+        speak(text.innerText);
+
+        setTimeout(function() {
+            location.href="/results";
+        }, 5000);  
     }
 }
 
 pass_btn.addEventListener("click", passEvent);
 
-pass_btn.click();
+
+$('.box').css("display", "none");
+        const text = document.createElement('div');
+        text.innerText = "안녕하세요. 저는 AI 모의 면접관 마리모입니다. 생각시간동안 생각하고 답변시간동안 답변하시면 됩니다. 답변시간이 남으면 PASS 버튼을 눌러 다음 질문으로 넘어가세요. 또한 카메라가 켜질 때 답변을 하십시오. 지금부터 면접을 시작하겠습니다.";
+        $('.interview').append(text);
+        speak(text.innerText);
+
+        setTimeout(function() {
+            $('.box').css("display", "flex");
+            text.innerText = "";
+            pass_btn.click();
+        }, 25000);
