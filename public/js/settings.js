@@ -49,18 +49,21 @@ $(document).ready(function() {
 
     const length = $('li').length;
 
-    for (i=1; i<=length; i++) {
-      if(i < length) {
-        questions = questions + String($("ul li:nth-child(" + i + ") span").html()) + "@";
-      } else {
-        questions = questions + String($("ul li:nth-child(" + i + ") span").html());
-      }
+    if(length <= 0) {
+      alert("예상 질문을 입력해주세요!");
+    } else {
+        for (i=1; i<=length; i++) {
+          if(i < length) {
+            questions = questions + String($("ul li:nth-child(" + i + ") span").html()) + "@";
+          } else {
+            questions = questions + String($("ul li:nth-child(" + i + ") span").html());
+          }
+        }
+    
+        questions_input.value = questions;
+        settings_form.submit();
+        questions_input.value = "";
     }
-
-    questions_input.value = questions;
-
-    settings_form.submit();
-    questions_input.value = "";
   }
 
   settings_submit.addEventListener("click", submitSettings);

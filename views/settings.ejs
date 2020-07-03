@@ -9,21 +9,40 @@
   <body>
     <div class = "settings">
       <form class="settings_form" action="/interview" method="post">
-        <div class = setting_title">생각시간</div>
-        <input type="number" value="0" name="think_time" min="0" max="59"> <span>초</span>
-
-        <div class = setting_title">답변시간</div>
-        <input type="number" value="0" name="answer_time" min="0" max="90"> <span>초</span>
-
-        <div class = setting_title">예상질문</div>
-        <ul class="settings_questions"></ul>
-        <input class="questions_input" type="text" name="expected_questions" />
+        <div class="setting_think">
+          <div class = "setting_title">생각시간</div>
+          <span class="stepper">
+            <button class="minus" type="button" onclick="minus('think');">–</button>
+              <input class="think_time" type="number" value="0" name="think_time" min="0" max="30" readonly> 
+            <button class="plus" type="button" onclick="plus('think');">+</button>
+          </span>
+          
+          <div class = "setting_title">초</div>
+        </div>
+        
+        <div class="setting_answer">
+          <div class = "setting_title">답변시간</div>
+          <span class="stepper">
+            <button class="minus" type="button" onclick="minus('answer');">–</button>
+            <input class="answer_time" type="number" value="20" name="answer_time" min="20" max="40" readonly>
+            <button class="plus" type="button" onclick="plus('answer');">+</button>
+          </span>
+          <div class = "setting_title">초</div>
+        </div>
+        
+        <div class="settings_question">
+          <div class = "setting_title">예상질문</div>
+          <input class="questions_input" type="text" name="expected_questions" />
+          <ul class="settings_questions"></ul>
+        </div>
+        
         <div>
           <input class="settings_submit" type="submit" value="모의면접 시작하기">
         </div>
       </form>
     </div>
     
+    <script src="js/step.js"></script>
     <script src="js/settings.js"></script>
   </body>
 </html>

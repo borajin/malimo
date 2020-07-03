@@ -1,7 +1,14 @@
 @import "index.css";
 @import "settings.css";
 @import "interview.css";
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@700&display=swap');
+
 
 body {
   padding: 50px 20px 80px 20px;
+  height: 800px;
+  width: 100%;
+  display: table;
+  font-family: 'Sunflower', sans-serif; 
+  color: #2f5597;;
 }
