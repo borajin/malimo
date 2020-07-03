@@ -7,27 +7,35 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class = "settings">
-      <div class = "think_time"> 
-        <span>생각시간: </span> 
-        <span id="think_time"><%= think_time %></span> 
-        <span>초</span>
-      </div>
-      <div class="answer_time"> 
-        <span>답변시간: </span>
-        <span id="answer_time"><%= answer_time %></span> 
-        <span>초</span>
-      </div>
-      <div class="questions"> 
-        <span>질문: </span> 
-        <span id="expected_questions"><%= expected_questions %></span>
+    <div class="interview">
+      <div class="box">
+          <div class = "options">
+            <div class="time">
+              <div class = "think_time"> 
+              <div class="interview_title">생각시간</div> 
+              <div class="interview_time" id="think_time"><%= think_time %></div> 
+              <div class="interview_text">초</div>
+            </div>
+            <div class="answer_time"> 
+              <div class="interview_title">답변시간</div>
+              <div class="interview_time" id="answer_time"><%= answer_time %></div> 
+              <div class="interview_text">초</div>
+            </div>
+            <button id="pass_btn">PASS</button>
+            </div>
+
+            <div class="questions"> 
+              <div class="interview_title">질문</div> 
+              <div class="interview_text" id="expected_questions"><%= expected_questions %></div>
+            </div>
+        </div>
+
+        <div class="interview_video">
+          <video autoplay style="max-height: 900px;"></video>
+        </div>
       </div>
     </div>
-
-    <button id="pass_btn">PASS</button>
-
-    <video autoplay style="max-height: 968px;"></video>
-
+    
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
     <script src="js/interview.js"></script>

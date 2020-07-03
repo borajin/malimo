@@ -69,12 +69,22 @@ function stopRecordingCallback() {
 
     var formData = new FormData();
     formData.append('file', file);
-    uploadToServer(formData);
-
-    /*
-    const socket = io();
-    socket.emit('upload', {data: file});
-    */
+    $ajax({
+        type: "POST",
+        enctype:'multipart/form-data',
+        url: 'upload',
+        data: formData,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 6000000,
+        success: function(data) {
+            console.log("success: ", data);
+        },
+        error: function(e) {
+            console.log("error: ", e);
+        }
+    });
 
     recorder.camera.stop();
     recorder.destroy();
