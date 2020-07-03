@@ -7,6 +7,7 @@ const fs = require('fs');
 const indexRouter = require('./routes/index');
 const settingsRouter = require('./routes/settings');
 const interviewRouter = require('./routes/interview');
+const resultsRouter = require('./routes/results');
 
 const app = express();
 
@@ -27,12 +28,14 @@ app.use(cors());
 app.use('/', indexRouter);
 app.get('/settings', settingsRouter);
 app.post('/interview', interviewRouter);
+app.get('/results', resultsRouter);
 
 //서버 생성
 const server = app.listen(8080, function(){
     console.log("Express server has started on port 8080");
 })
 
+/*
 const io = require('socket.io')(server);
 io.on('connection', function(socket) {
     socket.on('upload', function(data) {
@@ -41,13 +44,6 @@ io.on('connection', function(socket) {
         fs.writeFile('./test.webm', data, 'utf8', function(err) {
 
         });
-
-        /*
-        const reader = new FileReader();
-        reader.readAsDataURL(data);
-        diskStorage.Store({
-            videoBlob: data
-        });
-        */
     })
 })
+*/
